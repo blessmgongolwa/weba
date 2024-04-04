@@ -416,20 +416,22 @@ $(document).ready(function(){
                 var menuStatus                =   mobileMenuIcon.attr("data-status");
                 var menuSlideDirectionOpen    =   mobileMenuIcon.attr("data-slide-direction-open");
                 var menuSlideDirectionClose   =   mobileMenuIcon.attr("data-slide-direction-close");
+                var menuIcon                  =   mobileMenuIcon.attr("data-icon");
+                var menuCloseIcon             =   mobileMenuIcon.attr("data-icon-close");
               
                     // console.log(menuStatus);
                     //
                     switch(menuStatus){
                         case "hidden":
-                                            mobileMenuArea.removeClass("d-none").show("slide",{direction:menuSlideDirection},200);
+                                            mobileMenuArea.removeClass("d-none").show("slide",{direction:menuSlideDirectionOpen},200);
                                             mobileMenuIcon.attr("data-status","visible");
-                                            mobileMenuIcon.html('<i class="bi-x h1 text-safari-orange h1"></i>');
+                                            mobileMenuIcon.removeClass(menuIcon).addClass(menuCloseIcon);
                                             break;
 
                         case "visible":
-                                            mobileMenuArea.addClass("d-none").hide("slide",{direction:"right"},200);
+                                            mobileMenuArea.addClass("d-none").hide("slide",{direction:menuSlideDirectionClose},200);
                                             mobileMenuIcon.attr("data-status","hidden");
-                                            mobileMenuIcon.html('<i class="bi-list h1 text-safari-orange h1"></i>');
+                                            mobileMenuIcon.removeClass(menuCloseIcon).addClass(menuIcon);
                                             break;
                     }
             }
