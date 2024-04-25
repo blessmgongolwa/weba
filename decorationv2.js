@@ -450,7 +450,7 @@ $(document).ready(function(){
                                             collapseSubmenus();
                                             //
                                             submenuIcon.removeClass('bi-arrow-right-short').addClass('bi-arrow-down-short');
-                                            submenuArea.removeClass('d-none').addClass('d-block').slideDown();
+                                            submenuArea.removeClass('d-none').addClass('d-block').show("slide",{direction:'down'},150);
                                             $(this).attr("data-status","visible");
                                             break;
                         case "visible":
@@ -462,7 +462,7 @@ $(document).ready(function(){
             function collapseSubmenus(){
                 mobileMenuSubmenu.each(function(){      $(this).attr("data-status","hidden");    });
                 //
-                mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').slideUp();    });
+                mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').hide("slide",{direction:'down'},150);    });
                 mobileMenuSubmenuIcons.each(function(){ $(this).removeClass('bi-arrow-down-short').addClass('bi-arrow-right-short');    });
             }
 
