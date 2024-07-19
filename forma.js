@@ -57,4 +57,42 @@ $(document).ready(function(){
                             formaErrorArea.html(formErrorMessage);
                         }
             });
+
+    const	formaCountryCodeArea	=	$(".forma-country-code");
+    const	formaCountriesArea		=	$('.forma-countries');
+    const	formaMobileArea			=	$('.forma-mobile');
+    const	formaCountryCodedMobile	=	$('.forma-country-coded-mobile');
+            formaCountriesArea.change(function(){
+                const	selectedCountry			=	$(this).val();
+                
+                        //console.log(selectedCountry);
+                const 	countryCodes			=	JSON.parse(formaCountryCodeArea.attr("data-country-codes"))
+                        countryCodes.find(function(country,i){
+                            //
+                            if(new RegExp(selectedCountry,'gi').test(country.name)){
+
+                                formaCountryCodeArea.html('+'+country.code);
+                                formaCountryCodeArea.attr('data-code','+'+country.code);
+                            }
+                        });
+                        
+            });
+
+            formaCountryCodeArea.click(function(){	formaCountriesArea.focus();	});
+
+            formaMobileArea.keyup(function(){
+                formaCountryCodedMobile.val(formaCountryCodeArea.attr('data-code')+$(this).val())
+            });
+
+            if($('input.forma-date-input').length>0){
+                $('input.forma-date-input').flatpickr(
+                    {
+                        altInput: true,
+                        altFormat: "F j, Y",
+                        dateFormat: "Y-m-d",
+                        minDate:'today'
+                    }
+                );
+            }
+            
 });
