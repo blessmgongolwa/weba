@@ -71,8 +71,10 @@ $(document).ready(function(){
                             //
                             if(new RegExp(selectedCountry,'gi').test(country.name)){
 
-                                formaCountryCodeArea.html('+'+country.code);
-                                formaCountryCodeArea.attr('data-code','+'+country.code);
+                                //formaCountryCodeArea.html('+'+country.code);
+                                //formaCountryCodeArea.attr('data-code','+'+country.code);
+                                formaCountryCodeArea.html('+'+country.code.replace(/[^0-9]+/gi,''));
+                                formaCountryCodeArea.attr('data-code','+'+country.code.replace(/[^0-9]+/gi,''));
                             }
                         });
                         
