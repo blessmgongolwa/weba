@@ -57,6 +57,14 @@ $(document).ready(function(){
                                 $(this).css("background-position","center");
                         });
 
+                const   halfScreenHeightArea        =   $(".half-screen-height-area");  
+                        halfScreenHeightArea.each(function(){
+                            var tmpHeight           =   $(window).height()/2;
+                                $(this).css("height",tmpHeight);
+                                $(this).css("background-size","cover");
+                                $(this).css("background-position","center");
+                        });
+
                 const   squareArea                  =   $(".square-area");   
                         squareArea.each(function(){
                             var tmpHeight           =   $(this).innerWidth();
