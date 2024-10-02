@@ -65,6 +65,14 @@ $(document).ready(function(){
                                 $(this).css("background-position","center");
                         });
 
+                const   twoThirdScreenHeightArea        =   $(".two-third-screen-height-area");  
+                        twoThirdScreenHeightArea.each(function(){
+                            var tmpHeight           =   $(window).height()*2/3;
+                                $(this).css("height",tmpHeight);
+                                $(this).css("background-size","cover");
+                                $(this).css("background-position","center");
+                        });
+
                 const   squareArea                  =   $(".square-area");   
                         squareArea.each(function(){
                             var tmpHeight           =   $(this).innerWidth();
