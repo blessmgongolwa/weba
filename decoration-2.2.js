@@ -65,6 +65,7 @@ $(document).ready(function(){
                                 $(this).css("background-position","center");
                         });
 
+                // 2/3 of the height 
                 const   twoThirdScreenHeightArea        =   $(".two-third-screen-height-area");  
                         twoThirdScreenHeightArea.each(function(){
                             var tmpHeight           =   $(window).height()*2/3;
