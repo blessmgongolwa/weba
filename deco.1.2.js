@@ -134,44 +134,44 @@ $(document).ready(function(){
             
     
 
-    const   mobileMenuIcon      =   $(".mobile-menu-toggler");
-    const   mobileMenuArea      =   $(".mobile-menu");
-    const   mobileMenuLink      =   $(".mobile-menu-link");
+    const   mobileMenuIcon      =   ".mobile-menu-toggler";
+    const   mobileMenuArea      =   ".mobile-menu";
+    const   mobileMenuLink      =   ".mobile-menu-link";
 
-            mobileMenuIcon.click(   function(){     toggleMobileMenu();    });
-            mobileMenuLink.click(   function(){     toggleMobileMenu();    });
+            $(mobileMenuIcon).click(   function(){     toggleMobileMenu();    });
+            $(mobileMenuLink).click(   function(){     toggleMobileMenu();    });
 
             function toggleMobileMenu(){
 
-                var menuStatus                =   mobileMenuIcon.attr("data-status");
-                var menuSlideDirectionOpen    =   mobileMenuIcon.attr("data-slide-direction-open");
-                var menuSlideDirectionClose   =   mobileMenuIcon.attr("data-slide-direction-close");
-                var menuIcon                  =   mobileMenuIcon.attr("data-icon");
-                var menuCloseIcon             =   mobileMenuIcon.attr("data-icon-close");
+                var menuStatus                =   $(mobileMenuIcon).attr("data-status");
+                var menuSlideDirectionOpen    =   $(mobileMenuIcon).attr("data-slide-direction-open");
+                var menuSlideDirectionClose   =   $(mobileMenuIcon).attr("data-slide-direction-close");
+                var menuIcon                  =   $(mobileMenuIcon).attr("data-icon");
+                var menuCloseIcon             =   $(mobileMenuIcon).attr("data-icon-close");
               
                     // console.log(menuStatus);
                     //
                     switch(menuStatus){
                         case "hidden":
-                                            mobileMenuArea.removeClass("d-none").show("slide",{direction:menuSlideDirectionOpen},200);
-                                            mobileMenuIcon.attr("data-status","visible");
-                                            mobileMenuIcon.removeClass(menuIcon).addClass(menuCloseIcon);
+                                            $(mobileMenuArea).removeClass("d-none").show("slide",{direction:menuSlideDirectionOpen},200);
+                                            $(mobileMenuIcon).attr("data-status","visible");
+                                            $(mobileMenuIcon).removeClass(menuIcon).addClass(menuCloseIcon);
                                             break;
 
                         case "visible":
-                                            mobileMenuArea.addClass("d-none").hide("slide",{direction:menuSlideDirectionClose},200);
-                                            mobileMenuIcon.attr("data-status","hidden");
-                                            mobileMenuIcon.removeClass(menuCloseIcon).addClass(menuIcon);
+                                            $(mobileMenuArea).addClass("d-none").hide("slide",{direction:menuSlideDirectionClose},200);
+                                            $(mobileMenuIcon).attr("data-status","hidden");
+                                            $(mobileMenuIcon).removeClass(menuCloseIcon).addClass(menuIcon);
                                             break;
                     }
             }
 
-    const   mobileMenuSubmenu           =   $(".mobile-menu-submenu");
+    const   mobileMenuSubmenu           =   ".mobile-menu-submenu";
 
-    const   mobileMenuSubmenuAreas      =   $(".mobile-menu-submenu-area");
-    const   mobileMenuSubmenuIcons      =   $(".mobile-menu-submenu-icon");
+    const   mobileMenuSubmenuAreas      =   ".mobile-menu-submenu-area";
+    const   mobileMenuSubmenuIcons      =   ".mobile-menu-submenu-icon";
             //
-            mobileMenuSubmenu.click(function(){
+            $(document).on("click",mobileMenuSubmenu,function(){
                 var submenuArea         =   $(this).find(".mobile-menu-submenu-area");
                 var submenuIcon         =   $(this).find(".mobile-menu-submenu-icon");
                     //
@@ -190,10 +190,10 @@ $(document).ready(function(){
             });
 
             function collapseSubmenus(){
-                mobileMenuSubmenu.each(function(){      $(this).attr("data-status","hidden");    });
+                $(mobileMenuSubmenu).each(function(){      $(this).attr("data-status","hidden");    });
                 //
-                mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').hide("slide",{direction:'down'},150);    });
-                mobileMenuSubmenuIcons.each(function(){ $(this).removeClass('bi-arrow-down-short').addClass('bi-arrow-right-short');    });
+                $(mobileMenuSubmenuAreas).each(function(){ $(this).removeClass('d-block').addClass('d-none').hide("slide",{direction:'down'},150);    });
+                $(mobileMenuSubmenuIcons).each(function(){ $(this).removeClass('bi-arrow-down-short').addClass('bi-arrow-right-short');    });
             }
 
         
