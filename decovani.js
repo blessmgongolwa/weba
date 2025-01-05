@@ -1,7 +1,6 @@
 setInterval(resizer,100)
 //var		angle	=	0;
 function resizer(){
-    console.log('here')
     const   squareArea      	=   document.getElementsByClassName('square-area');
 			if(squareArea.length>0){
 				for(const area in squareArea){
