@@ -6,8 +6,8 @@ function resizer(){
 				for(const area in squareArea){
 					const   element             =   squareArea[area];
 							if(typeof(element)=='object'){
-                const  style    =    {'height':element.offsetWidth.toString()+'px'}
-                       element.setAttribute('style':style);
+				                const  style    =    {'height':element.offsetWidth.toString()+'px'}
+				                       element.setAttribute('style',style);
 							}
 				}
 			}
@@ -17,8 +17,8 @@ function resizer(){
 				for(const area in doubleWidthHeight){
 					const   element             =   doubleWidthHeight[area];
 							if(typeof(element)=='object'){
-                const  style    =    {'height':(element.offsetWidth*2).toString()+'px'}
-                       element.setAttribute('style':style);
+				                const  style    =    {'height':(element.offsetWidth*2).toString()+'px'}
+				                       element.setAttribute('style',style);
 							}
 				}
 			}
@@ -28,8 +28,8 @@ function resizer(){
 				for(const area in goldenRatioArea){
 					const   element                 =   goldenRatioArea[area];
 							if(typeof(element)=='object'){
-                const  style    =    {'height':(element.offsetWidth/1.618).toString()+'px'}
-                       element.setAttribute('style':style);
+				                const  style    =    {'height':(element.offsetWidth/1.618).toString()+'px'}
+				                       element.setAttribute('style',style);
 							}
 				}
 			}
@@ -100,7 +100,7 @@ function resizer(){
                                         'top':distanceFromTop+'%',
                                         'right':distanceFromRight+'%',
                                     }
-                       knob.setAttribute('style':style);
+                       knob.setAttribute('style',style);
 							}
 				}
 			}
