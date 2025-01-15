@@ -89,10 +89,11 @@ $(document).ready(function(){
             if($('input.forma-date-input').length>0){
                 $('input.forma-date-input').flatpickr(
                     {
-                        altInput         :    true,
-                        altInputClass    :    "",
-                        altFormat        :    "F j, Y",
-                        dateFormat       :    "Y-m-d",
+                        altInput         :    true,,
+                        disableMobile    :    true
+                        altInputClass    :    '',
+                        altFormat        :    'F j, Y',
+                        dateFormat       :    'Y-m-d',
                         minDate          :    'today'
                     }
                 );
