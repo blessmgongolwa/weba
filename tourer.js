@@ -55,24 +55,25 @@ $(document).ready(
                                                                         content     =   '<div class="col-12 p-0 m-0 mb-2 html-content text-dark text-justify">'+decode_html(json_data.ccontent)+'</div>';
                                                                         break;
                                                 case "day-by-day":
-
-                                                                        var     extra_content   =   decode_html(json_data.extra_content);
-                                                                                extra_content   =   clean_content(extra_content);
-                                                                                // clean decoded html to clean one and removing repetation
-
-
-                                                                                //
-                                                                                // prepare day by day iotinerary
-                                                                                content     =   '<div class="col-12 p-0 m-0 border-start border-start-1 border-dark ">';
-                                                                                JSON.parse(extra_content).map(
-                                                                                    function(day){
-                                                                                        content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                            '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> '+day.title+' </div>'+
-                                                                                                            '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
-                                                                                                        '</div>';
-                                                                                    }
-                                                                                );
-                                                                                content    +=   '</div>';
+                                                                        if(json_data.extra_content!="none"){
+                                                                            var     extra_content   =   decode_html(json_data.extra_content);
+                                                                                    extra_content   =   clean_content(extra_content);
+                                                                                    // clean decoded html to clean one and removing repetation
+    
+    
+                                                                                    //
+                                                                                    // prepare day by day iotinerary
+                                                                                    content     =   '<div class="col-12 p-0 m-0 border-start border-start-1 border-dark ">';
+                                                                                    JSON.parse(extra_content).map(
+                                                                                        function(day){
+                                                                                            content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> '+day.title+' </div>'+
+                                                                                                                '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
+                                                                                                            '</div>';
+                                                                                        }
+                                                                                    );
+                                                                                    content    +=   '</div>';   
+                                                                        }
                                                                         
                                                                         break;
                                                 case "includes":
