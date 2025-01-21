@@ -23,10 +23,6 @@ $(document).ready(
                         }
                     );*/
                     
-
-                    
-
-                    
                             // on html attributes replace "-double quotes with ' single
                     var     matches     =   content.match(/(([^\\{\\:\\,])([\\=])")|("([\\=\s>]{1,3})([^\\:\\,]))/gi);
                             //
