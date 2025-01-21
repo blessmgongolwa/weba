@@ -12,6 +12,15 @@ $(document).ready(
                                 }
                             );
 
+                    
+
+                    const   matches =   content.match(/[^\\{\\:\\,]"[^\\:,]/gi);
+                            matches.map(
+                                function(match){
+                                    content    =   content.replaceAll(match,match.replace(new RegExp('"','gi'),'\\"'))
+                                }
+                            );
+
                             return content;
                 }
 
