@@ -12,25 +12,45 @@ $(document).ready(
                                 }
                             );
 
-                    
-
-                    const   matches =   content.match(/[^\\{\\:\\,]"[^\\:,]/gi);
-                            matches.map(
-                                function(match){
-                                    content    =   content.replaceAll(match,match.replace(new RegExp('"','gi'),'\\"'))
-                                }
-                            );
-
                             return content;
                 }
 
                 function clean_content(content){
 
-                    Object.keys(replacements).map(
+                    /*Object.keys(replacements).map(
                         function(key){
                             content    =   content.replace(new RegExp(key,'gi'),replacements[key]); 
                         }
-                    );
+                    );*/
+                    
+
+                    
+
+                    
+                            // on html attributes replace "-double quotes with ' single
+                    var     matches     =   content.match(/(([^\\{\\:\\,])([\\=])")|("([\\=\s>]{1,3})([^\\:\\,]))/gi);
+                            //
+                            if(matches!=null){
+                                //
+                                matches.map(
+                                    function(match){
+                                        content    =   content.replace(new RegExp(match,'gi'),match.replace(new RegExp('"','gi'),"'"))
+                                    }
+                                );
+                            }
+
+                            // add slashes on quoted text
+                            matches     =   content.match(/[^\[\\{\\:\\,]"[^\]\\}\\:,]/gi);
+                            //
+                            if(matches!=null){
+                                matches.map(
+                                    function(match){
+                                        content    =   content.replace(new RegExp(match,'gi'),match.replace(new RegExp('"','gi'),'\\"'))
+                                    }
+                                );
+                            }
+
+                    
                     
                     return content;
                 }
