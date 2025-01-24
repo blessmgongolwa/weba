@@ -47,11 +47,14 @@ $(document).ready(
                             }
 
                     
-                    
-                    return link_replacer(content);
+                    link_replacer(content);
+                    return content;//
                 }
 
                 function link_replacer(content){
+
+                    console.log(content);
+                    
                     const   matches     =   content.match(new RegExp('((http|https):\/\/)?([a-z0-9\_\-]+)(\.[a-z]+){1,3}(\/[a-z0-9\_\%\+\-]+){0,10}(\/)?','gi'));
                             if(matches){
                                 for(i in matches){
@@ -131,11 +134,11 @@ $(document).ready(
                                                                         content     =   '<div class="col-12 p-0 m-0 mb-2 px-3">'+
                                                                                             '<div class="row p-0 m-0 align-items-start justify-content-start">'+
                                                                                                 '<div class="col-lg-6 col-md-6 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0">'+
-                                                                                                    '<div class="col-12 p-0 m-0 mb-2 fw-bold text-start">Package Includes</div>'+
+                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-start text-dark">Package Includes</div>'+
                                                                                                     '<div class="col-12 p-0 m-0 html-content text-dark text-justify">'+decode_html(json_data.cdata4)+'</div>'+
                                                                                                 '</div>'+
                                                                                                 '<div class="col-lg-6 col-md-6 col-12 p-0 m-0 ps-lg-2 ps-md-2 ps-0">'+
-                                                                                                    '<div class="col-12 p-0 m-0 mb-2 fw-bold text-start">Package Excludes</div>'+
+                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-start text-dark">Package Excludes</div>'+
                                                                                                     '<div class="col-12 p-0 m-0 html-content text-dark text-justify">'+decode_html(json_data.cdata5)+'</div>'+
                                                                                                 '</div>'+
                                                                                             '</div>'+
