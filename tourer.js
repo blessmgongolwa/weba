@@ -48,7 +48,26 @@ $(document).ready(
 
                     
                     
-                    return content;
+                    return link_replacer(content);
+                }
+
+                function link_replacer(content){
+                    const   matches     =   content.match(new RegExp('((http|https):\/\/)?([a-z0-9\_\-]+)(\.[a-z]+){1,3}(\/[a-z0-9\_\%\+\-]+){0,10}(\/)?','gi'));
+                            if(matches){
+                                for(i in matches){
+                                    const   link            =   matches[i];
+                                    const   link_keywords   =   link.match(new RegExp('\b(?!(http|https))\w+\b','gi'));
+                                    var     link_name       =   "";
+                                            if(link_keywords){
+                                                link_name   =   link_keywords[0];
+                                            }
+                                    const   linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 ml-2 ms-2 rounded-2 bg-primary text-white fw-bold lh-sm'>"+link_name+"</a>"
+
+                                            content         =   content.replace(new RegExp(link,'gi'),linkButton);
+                                }
+                            }
+
+                            return content;
                 }
 
                 // tabs
