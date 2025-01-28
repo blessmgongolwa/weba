@@ -126,9 +126,10 @@ $(document).ready(
                                                                                     // prepare day by day iotinerary
                                                                                     content     =   '<div class="col-12 p-0 m-0 border-start border-start-1 border-dark ">';
                                                                                     JSON.parse(extra_content).map(
-                                                                                        function(day){
+                                                                                        function(day,index){
                                                                                             content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> '+day.title+' </div>'+
+                                                                                                                '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+(index+1)+' </div>'+
+                                                                                                                '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
                                                                                                                 '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
                                                                                                             '</div>';
                                                                                         }
