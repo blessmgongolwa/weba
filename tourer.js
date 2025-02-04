@@ -73,6 +73,9 @@ $(document).ready(
                                     var     link_name       =   "";
                                             if(link_keywords){
                                                 link_name   =   link_keywords[0];
+                                                if(link_name.toLowerCase()=="www"){
+                                                    link_name   =   link_keywords[1];
+                                                }
                                             }
                                     const   linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 px-2 ml-2 ms-2 rounded-2 bg-"+dark_color+" text-"+light_color+" fw-normal lh-sm '>"+link_name+"</a>";
 
