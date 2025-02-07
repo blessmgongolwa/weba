@@ -59,7 +59,7 @@ $(document).ready(
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
 
-                    const   matches     =   content.match(new RegExp('((http|https):\\/\\/)?([a-z0-9\\_\\-]+)(\\.[a-z]+){1,3}(\\/[a-z0-9\\_\\%\\+\\-]+){0,10}((\\/)?)','gi'));
+                    const   matches     =   content.match(new RegExp('([^\\"\\\'])((http|https):\\/\\/)?([a-z0-9\\_\\-]+)(\\.[a-z]+){1,3}(\\/[a-z0-9\\_\\%\\+\\-]+){0,10}((\\/)?)([^\\"\\\'])','gi'));
                             if(matches){
                                 
                                 // filter unique links
@@ -119,7 +119,16 @@ $(document).ready(
                                             //
                                             switch(tab){
                                                 case "highlight":
-                                                                        content     =   '<div class="col-12 p-0 m-0 mb-2 html-content text-dark text-justify">'+decode_html(json_data.ccontent)+'</div>';
+                                                                        const   domain      =   window.location.origin;
+                                                                        var     img_link    =   domain+'/cms/attachments/def.webp';
+                                                                                if(json_data.cfiles!="none"){
+                                                                                    const   image   =   json_data.cfiles.split(',').find((file)=>new RegExp('\\.(webp|png|jpg|jpeg|svg|avif|gif|bitmap)$','gi').test(file));
+                                                                                            if(image){
+                                                                                                img_link    =   domain+'/cms/attachments/'+image;
+                                                                                            }
+                                                                                }
+                                                                                content     =   '<div class="scol-12 p-0 m-0 mb-3"> <img src="'+img_link+'" alt="'+decode_html(json_data.ctitle)+'" col-12 p-0 m-0/> </div>'+
+                                                                                                '<div class="col-12 p-0 m-0 mb-2 html-content text-dark text-justify">'+decode_html(json_data.ccontent)+'</div>';
                                                                         break;
                                                 case "day-by-day":
                                                                         if(json_data.extra_content!="none"){
