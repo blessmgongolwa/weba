@@ -7,6 +7,7 @@ $(document).ready(
         var     dark_color      =   'dark';
         var     light_color     =   'white';
 
+                // decode html in a content
                 function decode_html(content){
                     var     content   =   content.replace(/\\/g,'');
                             //*** decode html entity to html
@@ -19,6 +20,7 @@ $(document).ready(
                             return content;
                 }
 
+                // clean content remove slashes and if json escape double quotation
                 function clean_content(content){
 
                     /*Object.keys(replacements).map(
@@ -54,6 +56,7 @@ $(document).ready(
                     return link_replacer(content);//
                 }
 
+                // replace links with a buttons and text should be domain name
                 function link_replacer(content){
 
                     const   matches     =   content.match(new RegExp('((http|https):\\/\\/)?([a-z0-9\\_\\-]+)(\\.[a-z]+){1,3}(\\/[a-z0-9\\_\\%\\+\\-]+){0,10}((\\/)?)','gi'));
@@ -87,7 +90,7 @@ $(document).ready(
                             return content; 
                 }
 
-                // tabs
+                // tabs for tour post, rates, includes & excludes, book now and etc
                 if($("div.itinerary-tabs").length>0){
                     const   itinerary_tab                   =   $("button.itinerary-tab");
                     const   itinerary_tab_content           =   $("div.itinerary-tab-content");
@@ -186,5 +189,16 @@ $(document).ready(
                                 }
                             );
                 }
+
+        // days range seeker update days selected.
+        var     daysRangeArea   =   $("div#days-range-area");
+        var     daysRangeInput  =   $("input.days-range-input");
+                daysRangeInput.change(
+                    function(){
+                        //
+                        // 
+                        daysRangeArea.html(daysRangeInput.val()+" day(s) picked");
+                    }
+                )
     }
 );
