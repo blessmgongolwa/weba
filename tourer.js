@@ -211,3 +211,32 @@ $(document).ready(
                 )
     }
 );
+
+$(window).on('load',function(){//
+    //
+    // lazy load images
+    try{
+        //
+        var     lazyLoadInstance    =   new LazyLoad({
+                                            // Your custom settings go here
+                                                
+                                        });
+
+    }
+    catch(lazy_load_error){
+        
+    }
+
+    const   laterMedia          =   $(".later-media");
+            laterMedia.each(
+                function(){
+                    //console.log($(this).attr("data-later-bg"));
+                    if($(this).prop("tagName").toLowerCase()=='img'){
+                        $(this).attr("src",$(this).attr("later-media"));
+                    }
+                    else{
+                        $(this).css("background-image","url("+$(this).attr("later-media")+")");
+                    }
+                }
+            );
+});
