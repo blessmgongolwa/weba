@@ -58,7 +58,7 @@ $(document).ready(
 
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
-
+                    console.log(content);
                     const   matches     =   content.match(new RegExp('([^\\"\\\'])((http|https):\\/\\/)?([a-z0-9\\_\\-]+)(\\.[a-z]+){1,3}(\\/[a-z0-9\\_\\%\\+\\-]+){0,10}((\\/)?)([^\\"\\\'])','gi'));
                             if(matches){
                                 
