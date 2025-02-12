@@ -58,8 +58,8 @@ $(document).ready(
 
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
-                    console.log(content);
-                    const   matches     =   content.match(new RegExp('((https|http):\/\/)(www\.)?(([a-z0-9\-\_]+){1,2})((\.[a-z]+){1,2})((\/[a-z0-9\_\%\&\;\-]+){1,})?(\/)?','gi'));
+                    //console.log(content);
+                    const   matches     =   content.match(new RegExp('((https|http):\\/\\/)(www\\.)?(([a-z0-9\\_\\-]+){1,2})((\\.[a-z]+){1,2})((\\/[a-z0-9\\_\\%\\&\\;\\-]+){1,})?(\\/)?','gi'));
                             console.log(matches);
                             if(matches){
                                 
