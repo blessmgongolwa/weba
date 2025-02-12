@@ -501,6 +501,4 @@ $(document).ready(function(){
                 mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').hide("slide",{direction:'down'},150);    });
                 mobileMenuSubmenuIcons.each(function(){ $(this).removeClass('bi-arrow-down-short').addClass('bi-arrow-right-short');    });
             }
-
-        
 });
