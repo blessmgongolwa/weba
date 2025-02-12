@@ -49,65 +49,99 @@ $(document).ready(function(){
             //
             function resizer(){
 
-                const   screenHeightArea            =   $(".screen-height-area");  
-                        screenHeightArea.each(function(){
-                            var tmpHeight           =   $(window).height();
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                const   screenHeightArea            =   $(".screen-height-area"); 
+                        if(screenHeightArea.length>0){
+                            screenHeightArea.each(function(){
+                                var tmpHeight           =   $(window).height();
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
+                            
+
+                const   halfScreenHeightArea        =   $(".half-screen-height-area"); 
+                        if(halfScreenHeightArea.length>0){  
+                            halfScreenHeightArea.each(function(){
+                                var tmpHeight           =   $(window).height()/2;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
+
+                // 2/3 of the height 
+                const   twoThirdScreenHeightArea        =   $(".two-third-screen-height-area"); 
+                        if(twoThirdScreenHeightArea.length>0){    
+                            twoThirdScreenHeightArea.each(function(){
+                                var tmpHeight           =   $(window).height()*2/3;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
                 const   squareArea                  =   $(".square-area");   
-                        squareArea.each(function(){
-                            var tmpHeight           =   $(this).innerWidth();
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                        if(squareArea.length>0){   
+                            squareArea.each(function(){
+                                var tmpHeight           =   $(this).innerWidth();
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
-                const   goldenRatioArea             =   $(".golden-ratio-area");   
-                        goldenRatioArea.each(function(){
-                            //console.log($(this).width());
-                            var tmpHeight           =   $(this).innerWidth()/1.618;
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                const   goldenRatioArea             =   $(".golden-ratio-area");  
+                        if(goldenRatioArea.length>0){    
+                            goldenRatioArea.each(function(){
+                                //console.log($(this).width());
+                                var tmpHeight           =   $(this).innerWidth()/1.618;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
                 const   goldenRatioAreaPortrait     =   $(".golden-ratio-area-portrait");   
-                        goldenRatioAreaPortrait.each(function(){
-                            //console.log($(this).width());
-                            var tmpHeight           =   ($(this).innerWidth()/1.618)*2;
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                        if(goldenRatioAreaPortrait.length>0){  
+                            goldenRatioAreaPortrait.each(function(){
+                                //console.log($(this).width());
+                                var tmpHeight           =   ($(this).innerWidth()/1.618)*2;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
-                const   halfWidthHeightArea             =   $(".half-width-height-area");   
-                        halfWidthHeightArea.each(function(){
-                            var tmpHeight           =   $(this).innerWidth()/2;
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                const   halfWidthHeightArea             =   $(".half-width-height-area");    
+                        if(halfWidthHeightArea.length>0){ 
+                            halfWidthHeightArea.each(function(){
+                                var tmpHeight           =   $(this).innerWidth()/2;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
-                const   squareAreaRelative          =   $(".square-area-relative");
-                        squareAreaRelative.each(function(){
-                            var tmpHeight           =   $(this).innerWidth();
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
+                const   twoTimesWidthHeight         =   $(".two-times-width-height");   
+                        if(twoTimesWidthHeight.length>0){  
+                            twoTimesWidthHeight.each(function(){
+                                var tmpHeight           =   $(this).innerWidth()*2;
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
 
-                const   homeAllSlidesArea           =   $("div.home-all-slides-area");
-                const   homeSlidesArea              =   $("div.home-slides-area"); 
-                        homeSlidesArea.each(function(){
-                            var tmpHeight           =   homeAllSlidesArea.innerWidth()*0.425;
-                                $(this).css("height",tmpHeight);
-                                $(this).css("background-size","cover");
-                                $(this).css("background-position","center");
-                        });
-                
+                const   squareAreaRelative          =   $(".square-area-relative");  
+                        if(squareAreaRelative.length>0){
+                            squareAreaRelative.each(function(){
+                                var tmpHeight           =   $(this).innerWidth();
+                                    $(this).css("height",tmpHeight);
+                                    $(this).css("background-size","cover");
+                                    $(this).css("background-position","center");
+                            });
+                        }
             }
 
     var productImagesPreviewAreaController      =   $("div.product-images-preview-area-controller");
@@ -249,107 +283,109 @@ $(document).ready(function(){
         }
 
     var siteSideSelectOptionsArea   =   $("div.site-side-select-options-area");
-        siteSideSelectOptionsArea.each(function(){
+        if(siteSideSelectOptionsArea.length>0){
+            siteSideSelectOptionsArea.each(function(){
 
-            var siteSideSelectOptionArea    =   $(this);
-            var selectDataType              =   siteSideSelectOptionArea.attr("data-type");
-            var selectDataPreValue          =   siteSideSelectOptionArea.attr("data-pre-option");
-            var selectDataTitle             =   siteSideSelectOptionArea.attr("data-title");
-            var selectDataHtml              =   '';
+                var siteSideSelectOptionArea    =   $(this);
+                var selectDataType              =   siteSideSelectOptionArea.attr("data-type");
+                var selectDataPreValue          =   siteSideSelectOptionArea.attr("data-pre-option");
+                var selectDataTitle             =   siteSideSelectOptionArea.attr("data-title");
+                var selectDataHtml              =   '';
 
-                switch(selectDataType){
-                    case "car-maker":
-                                        selectDataHtml      =   '';
-                                        for(const c in carListJson){
+                    switch(selectDataType){
+                        case "car-maker":
+                                            selectDataHtml      =   '';
+                                            for(const c in carListJson){
 
-                                            var carDetails      =   carListJson[c];
-                                            var carMakerName    =   carDetails.brand;
-                                                //
-                                                if(selectDataPreValue!=carMakerName){
-                                                    selectDataHtml     +=   '<option value="'+carMakerName+'">'+carMakerName+'</option>';    
-                                                }   
-                                        }
-                                        //
-                                        selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
-                                                                '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
-                                                                '<div class="col-6 p-0 m-0 pe-1">'+
-                                                                    '<select name="car-maker" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
-                                                                        '<option value="all">All</option>'+
-                                                                        selectDataHtml+
-                                                                    ' </select>'+
-                                                                '</div>'+
-                                                            '</div>';
-                                        //
-                                        siteSideSelectOptionArea.html(selectDataHtml); 
-                                        break;
-                    case "car-model":
-                                        selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
-                                                                '<div class="col-12 p-2 py-2 text-secondary"> Please select maker first </div>'+
-                                                            '</div>'
-                                        //
-                                        siteSideSelectOptionArea.html(selectDataHtml); 
-                                        break;
-                    case "car-year":
-                                        var tmpSelectDataHtml   =   '';
-                                        for(var y=2023;y>1990;y--){
+                                                var carDetails      =   carListJson[c];
+                                                var carMakerName    =   carDetails.brand;
+                                                    //
+                                                    if(selectDataPreValue!=carMakerName){
+                                                        selectDataHtml     +=   '<option value="'+carMakerName+'">'+carMakerName+'</option>';    
+                                                    }   
+                                            }
                                             //
-                                            tmpSelectDataHtml  +=   '<option value="'+y+'">'+y+'</option>';   
-                                        }
+                                            selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
+                                                                    '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
+                                                                    '<div class="col-6 p-0 m-0 pe-1">'+
+                                                                        '<select name="car-maker" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
+                                                                            '<option value="all">All</option>'+
+                                                                            selectDataHtml+
+                                                                        ' </select>'+
+                                                                    '</div>'+
+                                                                '</div>';
+                                            //
+                                            siteSideSelectOptionArea.html(selectDataHtml); 
+                                            break;
+                        case "car-model":
+                                            selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
+                                                                    '<div class="col-12 p-2 py-2 text-secondary"> Please select maker first </div>'+
+                                                                '</div>'
+                                            //
+                                            siteSideSelectOptionArea.html(selectDataHtml); 
+                                            break;
+                        case "car-year":
+                                            var tmpSelectDataHtml   =   '';
+                                            for(var y=2023;y>1990;y--){
+                                                //
+                                                tmpSelectDataHtml  +=   '<option value="'+y+'">'+y+'</option>';   
+                                            }
 
-                                        selectDataHtml  =   '<div class="col-12 p-0 m-0 mb-2 text-start fw-bold"> Year range</div>'+
-                                                            '<div class="row p-0 m-0 my-3">'+
-                                                                '<div class="col-5 p-0 m-0 ">'+
-                                                                    '<select name="year-from" class="col-12 p-2 py-2 shadow-none border-1 border-safari-orange rounded-1 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
-                                                                        '<option value="all">All</option>'+
-                                                                        tmpSelectDataHtml+
-                                                                    ' </select>'+
-                                                                '</div>'+
-                                                                '<div class="col-2 p-0 m-0 p-2 fw-bold">to</div>'+
-                                                                '<div class="col-5 p-0 m-0">'+
-                                                                    '<select name="year-to" class="col-12 p-2 py-2 shadow-none border-1 border-safari-orange rounded-1 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
-                                                                        '<option value="all">All</option>'+
-                                                                        tmpSelectDataHtml+
-                                                                    ' </select>'+
-                                                                '</div>'+
-                                                            '</div>';
-                                        //
-                                        siteSideSelectOptionArea.html(selectDataHtml); 
-                                        break;
-                    case "car-gear":
-                                        //
-                                        selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
-                                                                '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
-                                                                '<div class="col-6 p-0 m-0 pe-1">'+
-                                                                    '<select name="car-gear" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
-                                                                        '<option value="all">All</option>'+
-                                                                        '<option value="automatic"> Automatic</option>'+
-                                                                        '<option value="manual">    Mannual</option>'+
-                                                                    ' </select>'+
-                                                                '</div>'+
-                                                            '</div>';
-                                        //
-                                        siteSideSelectOptionArea.html(selectDataHtml); 
-                                        break;
-                    case "car-color":
-                                        break;
-                    case "car-fuel":    
-                                        //
-                                        selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
-                                                                '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
-                                                                '<div class="col-6 p-0 m-0 pe-1">'+
-                                                                    '<select name="car-fuel" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
-                                                                        '<option value="all">All</option>'+
-                                                                        '<option value="petrol">Petrol</option>'+
-                                                                        '<option value="diesel">Diesel</option>'+
-                                                                        '<option value="hybrid">Hybrid</option>'+
-                                                                    ' </select>'+
-                                                                '</div>'+
-                                                            '</div>';
-                                        //
-                                        siteSideSelectOptionArea.html(selectDataHtml); 
-                                        break;
-                }
-        });
+                                            selectDataHtml  =   '<div class="col-12 p-0 m-0 mb-2 text-start fw-bold"> Year range</div>'+
+                                                                '<div class="row p-0 m-0 my-3">'+
+                                                                    '<div class="col-5 p-0 m-0 ">'+
+                                                                        '<select name="year-from" class="col-12 p-2 py-2 shadow-none border-1 border-safari-orange rounded-1 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
+                                                                            '<option value="all">All</option>'+
+                                                                            tmpSelectDataHtml+
+                                                                        ' </select>'+
+                                                                    '</div>'+
+                                                                    '<div class="col-2 p-0 m-0 p-2 fw-bold">to</div>'+
+                                                                    '<div class="col-5 p-0 m-0">'+
+                                                                        '<select name="year-to" class="col-12 p-2 py-2 shadow-none border-1 border-safari-orange rounded-1 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
+                                                                            '<option value="all">All</option>'+
+                                                                            tmpSelectDataHtml+
+                                                                        ' </select>'+
+                                                                    '</div>'+
+                                                                '</div>';
+                                            //
+                                            siteSideSelectOptionArea.html(selectDataHtml); 
+                                            break;
+                        case "car-gear":
+                                            //
+                                            selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
+                                                                    '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
+                                                                    '<div class="col-6 p-0 m-0 pe-1">'+
+                                                                        '<select name="car-gear" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
+                                                                            '<option value="all">All</option>'+
+                                                                            '<option value="automatic"> Automatic</option>'+
+                                                                            '<option value="manual">    Mannual</option>'+
+                                                                        ' </select>'+
+                                                                    '</div>'+
+                                                                '</div>';
+                                            //
+                                            siteSideSelectOptionArea.html(selectDataHtml); 
+                                            break;
+                        case "car-color":
+                                            break;
+                        case "car-fuel":    
+                                            //
+                                            selectDataHtml  =   '<div class="row p-0 m-0 my-3 border-safari-orange rounded-1">'+
+                                                                    '<div class="col-6 p-2 py-2  m-0 bg-safari-orange text-center text-white fw-bold"> '+selectDataTitle+' </div>'+
+                                                                    '<div class="col-6 p-0 m-0 pe-1">'+
+                                                                        '<select name="car-fuel" class="col-12 p-2 py-2 shadow-none border-0 bg-transparent site-side-select site-side-select-'+selectDataType+'" data-type="'+selectDataType+'" data-pre-option="'+selectDataPreValue+'" data-title="'+selectDataTitle+'">'+
+                                                                            '<option value="all">All</option>'+
+                                                                            '<option value="petrol">Petrol</option>'+
+                                                                            '<option value="diesel">Diesel</option>'+
+                                                                            '<option value="hybrid">Hybrid</option>'+
+                                                                        ' </select>'+
+                                                                    '</div>'+
+                                                                '</div>';
+                                            //
+                                            siteSideSelectOptionArea.html(selectDataHtml); 
+                                            break;
+                    }
+            });
+        }
 
     var siteSideSelect  =   "select.site-side-select";
         $(document).on("click",siteSideSelect,function(){
@@ -413,20 +449,25 @@ $(document).ready(function(){
 
             function toggleMobileMenu(){
 
-                var menuStatus  =   mobileMenuIcon.attr("data-status");
+                var menuStatus                =   mobileMenuIcon.attr("data-status");
+                var menuSlideDirectionOpen    =   mobileMenuIcon.attr("data-slide-direction-open");
+                var menuSlideDirectionClose   =   mobileMenuIcon.attr("data-slide-direction-close");
+                var menuIcon                  =   mobileMenuIcon.attr("data-icon");
+                var menuCloseIcon             =   mobileMenuIcon.attr("data-icon-close");
+              
                     // console.log(menuStatus);
                     //
                     switch(menuStatus){
                         case "hidden":
-                                            mobileMenuArea.removeClass("d-none").show("slide",{direction:"left"},200);
+                                            mobileMenuArea.removeClass("d-none").show("slide",{direction:menuSlideDirectionOpen},200);
                                             mobileMenuIcon.attr("data-status","visible");
-                                            mobileMenuIcon.html('<i class="bi-x h1 text-safari-orange h1"></i>');
+                                            mobileMenuIcon.removeClass(menuIcon).addClass(menuCloseIcon);
                                             break;
 
                         case "visible":
-                                            mobileMenuArea.addClass("d-none").hide("slide",{direction:"right"},200);
+                                            mobileMenuArea.addClass("d-none").hide("slide",{direction:menuSlideDirectionClose},200);
                                             mobileMenuIcon.attr("data-status","hidden");
-                                            mobileMenuIcon.html('<i class="bi-list h1 text-safari-orange h1"></i>');
+                                            mobileMenuIcon.removeClass(menuCloseIcon).addClass(menuIcon);
                                             break;
                     }
             }
@@ -445,7 +486,7 @@ $(document).ready(function(){
                                             collapseSubmenus();
                                             //
                                             submenuIcon.removeClass('bi-arrow-right-short').addClass('bi-arrow-down-short');
-                                            submenuArea.removeClass('d-none').addClass('d-block').slideDown();
+                                            submenuArea.removeClass('d-none').addClass('d-block').show("slide",{direction:'down'},150);
                                             $(this).attr("data-status","visible");
                                             break;
                         case "visible":
@@ -457,7 +498,7 @@ $(document).ready(function(){
             function collapseSubmenus(){
                 mobileMenuSubmenu.each(function(){      $(this).attr("data-status","hidden");    });
                 //
-                mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').slideUp();    });
+                mobileMenuSubmenuAreas.each(function(){ $(this).removeClass('d-block').addClass('d-none').hide("slide",{direction:'down'},150);    });
                 mobileMenuSubmenuIcons.each(function(){ $(this).removeClass('bi-arrow-down-short').addClass('bi-arrow-right-short');    });
             }
 
