@@ -164,7 +164,9 @@ $(document).ready(
                                                                                                                 }
                                                                                                             }
 
-                                                                                                    var     day_number      =   Number(index+1);
+                                                                                                    var     day_number      =   index*1; 
+                                                                                                            day_number     +=    1;
+                                                                                                    
                                                                                                             console.log(day_number);
                                                                                                             content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
                                                                                                                                     '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
