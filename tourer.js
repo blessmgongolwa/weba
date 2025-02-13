@@ -149,6 +149,8 @@ $(document).ready(
                                                                                     catch(json_parse_error){    days    =   [];                         }
                                                                                     for(const index in days){
                                                                                         const   day     =   days[index];
+                                                                                        var     day_number      =   index*1; 
+                                                                                                day_number     +=    1;
                                                                                                 //
                                                                                                 if(Array.isArray(day.files)&&day.files.length>0){
                                                                                                     const   first_image_url     =   domain+'/cms/'+day.files[0];
@@ -163,11 +165,7 @@ $(document).ready(
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
-
-                                                                                                    var     day_number      =   index*1; 
-                                                                                                            day_number     +=    1;
                                                                                                     
-                                                                                                            console.log(day_number);
                                                                                                             content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
                                                                                                                                     '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
                                                                                                                                     '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
@@ -184,7 +182,7 @@ $(document).ready(
                                                                                                 }
                                                                                                 else{
                                                                                                     content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+(index+1)+' </div>'+
+                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
                                                                                                                         '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
                                                                                                                         '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
                                                                                                                     '</div>';
