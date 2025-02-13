@@ -58,9 +58,9 @@ $(document).ready(
 
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
-                    console.log(content);
+                    //console.log(content);
                     const   matches     =   content.match(new RegExp('((https|http):\\/\\/)(www\\.)?(([a-z0-9\\_\\-]+){1,2})((\\.[a-z]+){1,2})((\\/[a-z0-9\\_\\%\\&\\;\\-]+){1,})?(\\/)?','gi'));
-                            console.log(matches);
+                            //console.log(matches);
                             if(matches){
                                 
                                 // filter unique links
@@ -128,6 +128,8 @@ $(document).ready(
                                                                                                 img_link    =   domain+'/cms/attachments/'+image;
                                                                                             }
                                                                                 }
+
+                                                                                //
                                                                                 content     =   '<div class="scol-12 p-0 m-0 mb-3"> <img src="'+img_link+'" alt="'+decode_html(json_data.ctitle)+'" col-12 p-0 m-0/> </div>'+
                                                                                                 '<div class="col-12 p-0 m-0 mb-2 html-content text-dark text-justify">'+decode_html(json_data.ccontent)+'</div>';
                                                                         break;
@@ -143,6 +145,10 @@ $(document).ready(
                                                                                     content     =   '<div class="col-12 p-0 m-0 border-start border-start-1 border-dark ">';
                                                                                     JSON.parse(extra_content).map(
                                                                                         function(day,index){
+                                                                                            //
+                                                                                            console.log(day);
+
+                                                                                            //
                                                                                             content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
                                                                                                                 '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+(index+1)+' </div>'+
                                                                                                                 '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
