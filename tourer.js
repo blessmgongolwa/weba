@@ -58,9 +58,7 @@ $(document).ready(
 
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
-                    //console.log(content);
                     const   matches     =   content.match(new RegExp('((https|http):\\/\\/)(www\\.)?(([a-z0-9\\_\\-]+){1,2})((\\.[a-z]+){1,2})((\\/[a-z0-9\\_\\%\\&\\;\\-]+){1,})?(\\/)?','gi'));
-                            //console.log(matches);
                             if(matches){
                                 
                                 // filter unique links
@@ -70,7 +68,6 @@ $(document).ready(
                                                     if(!links.includes(link)){    links.push(link);   }
                                         }
 
-                                //console.log(links);
                                 for(i in links){
                                     const   link            =   links[i];
                                     const   link_keywords   =   link.match(new RegExp('\\b(?!(http|https))\\w+\\b','gi'));
@@ -87,12 +84,14 @@ $(document).ready(
                                 }
                             }
 
-                            //console.log(content);
                             return content; 
                 }
 
                 // tabs for tour post, rates, includes & excludes, book now and etc
                 if($("div.itinerary-tabs").length>0){
+
+                    const   domain                          =   window.location.origin;
+                    //
                     const   itinerary_tab                   =   $("button.itinerary-tab");
                     const   itinerary_tab_content           =   $("div.itinerary-tab-content");
                     const   itinerary_booking_form_area     =   $("div.itinerary-booking-form-area");
@@ -120,17 +119,16 @@ $(document).ready(
                                             //
                                             switch(tab){
                                                 case "highlight":
-                                                                        const   domain      =   window.location.origin;
                                                                         var     img_link    =   domain+'/cms/attachments/def.webp';
                                                                                 if(json_data.cfiles!="none"){
                                                                                     const   image   =   json_data.cfiles.split(',').find((file)=>new RegExp('\\.(webp|png|jpg|jpeg|svg|avif|gif|bitmap)$','gi').test(file));
                                                                                             if(image){
-                                                                                                img_link    =   domain+'/cms/attachments/'+image;
+                                                                                                img_link    =   domain+'/cms/'+image;
                                                                                             }
                                                                                 }
 
                                                                                 //
-                                                                                content     =   '<div class="scol-12 p-0 m-0 mb-3"> <img src="'+img_link+'" alt="'+decode_html(json_data.ctitle)+'" col-12 p-0 m-0/> </div>'+
+                                                                                content     =   '<div class="scol-12 p-0 m-0 mb-3"> <img src="'+img_link+'" alt="'+decode_html(json_data.ctitle)+'" class="col-12 p-0 m-0"/> </div>'+
                                                                                                 '<div class="col-12 p-0 m-0 mb-2 html-content text-dark text-justify">'+decode_html(json_data.ccontent)+'</div>';
                                                                         break;
                                                 case "day-by-day":
@@ -143,19 +141,53 @@ $(document).ready(
                                                                                     //
                                                                                     // prepare day by day iotinerary
                                                                                     content     =   '<div class="col-12 p-0 m-0 border-start border-start-1 border-dark ">';
-                                                                                    JSON.parse(extra_content).map(
-                                                                                        function(day,index){
-                                                                                            //
-                                                                                            console.log(day);
+                                                                            var     days        =   [];
 
-                                                                                            //
-                                                                                            content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+(index+1)+' </div>'+
-                                                                                                                '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
-                                                                                                                '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
-                                                                                                            '</div>';
-                                                                                        }
-                                                                                    );
+                                                                                    //
+                                                                                    // check if you can parse json
+                                                                                    try{                        days    =   JSON.parse(extra_content);  }
+                                                                                    catch(json_parse_error){    days    =   [];                         }
+                                                                                    for(const index in days){
+                                                                                        const   day     =   days[index];
+                                                                                                //
+                                                                                                if(Array.isArray(day.files)&&day.files.length>0){
+                                                                                                    const   first_image_url     =   domain+'/cms/'+day.files[0];
+                                                                                                    var     other_images        =   '';
+                                                                                                            if(day.files.length>1){
+                                                                                                                //
+                                                                                                                for(const file in day.files){
+                                                                                                                    //
+                                                                                                                    if(file!=0){
+                                                                                                                        //
+                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0 rounded-3"><img src="'+domain+'/cms/'+day.files[file]+'" alt="'+day.title+'" data-main-image="day-'+index+'-main-image" class="day-other-image col-12 p-0 m-0"/></div>';
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                    var     day_number      =   Number(index+1);
+                                                                                                            console.log(day_number);
+                                                                                                            content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
+                                                                                                                                    '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
+                                                                                                                                    '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
+                                                                                                                                        '<div class="row p-0 m-0">'+
+                                                                                                                                            '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
+                                                                                                                                            '<div class="col-lg-5 col-md-5 col-12">'+
+                                                                                                                                                '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
+                                                                                                                                                '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                                                            '</div>'+
+                                                                                                                                        '</div>'+
+                                                                                                                                    '</div>'+
+                                                                                                                                '</div>';
+                                                                                                }
+                                                                                                else{
+                                                                                                    content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+(index+1)+' </div>'+
+                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
+                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
+                                                                                                                    '</div>';
+                                                                                                }
+                                                                                    }
                                                                                     content    +=   '</div>';   
                                                                         }
                                                                         
@@ -237,7 +269,6 @@ $(window).on('load',function(){//
     const   laterMedia          =   $(".later-media");
             laterMedia.each(
                 function(){
-                    //console.log($(this).attr("data-later-bg"));
                     if($(this).prop("tagName").toLowerCase()=='img'){
                         $(this).attr("src",$(this).attr("later-media"));
                     }
