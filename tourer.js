@@ -147,6 +147,7 @@ $(document).ready(
                                                                                     // check if you can parse json
                                                                                     try{                        days    =   JSON.parse(extra_content);  }
                                                                                     catch(json_parse_error){    days    =   [];                         }
+                                                                            
                                                                                     for(const index in days){
                                                                                         const   day     =   days[index];
                                                                                         var     day_number      =   index*1; 
@@ -161,7 +162,7 @@ $(document).ready(
                                                                                                                     //
                                                                                                                     if(file!=0){
                                                                                                                         //
-                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0 rounded-3"><img src="'+domain+'/cms/'+day.files[file]+'" alt="'+day.title+'" data-main-image="day-'+index+'-main-image" class="day-other-image col-12 p-0 m-0"/></div>';
+                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 square-area" style="background:url(\''+domain+'/cms/'+day.files[file]+'\');" data-main-image="day-'+index+'-main-image"></div></div>';
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -188,7 +189,17 @@ $(document).ready(
                                                                                                                     '</div>';
                                                                                                 }
                                                                                     }
-                                                                                    content    +=   '</div>';   
+                                                                                    content    +=   '</div>';
+
+                                                                                    $(document).on('click','div.day-other-image',function(){
+                                                                                        //
+                                                                                        const    mainImage    =    $('img.'+$(this).attr('data-main-image'));
+                                                                                        const    imageUrl     =    $(this).attr('data-image');
+
+                                                                                                //
+                                                                                                //
+                                                                                                mainImage.attr('src',imageUrl);
+                                                                                    })
                                                                         }
                                                                         
                                                                         break;
