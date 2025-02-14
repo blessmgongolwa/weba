@@ -162,7 +162,7 @@ $(document).ready(
                                                                                                                     //
                                                                                                                     if(file!=0){
                                                                                                                         //
-                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 square-area" style="background:url(\''+domain+'/cms/'+day.files[file]+'\');" data-main-image="day-'+index+'-main-image"></div></div>';
+                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 border border-1 border-dark square-area" style="background:url(\''+domain+'/cms/'+day.files[file]+'\');" data-main-image="day-'+index+'-main-image"></div></div>';
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -193,12 +193,19 @@ $(document).ready(
 
                                                                                     $(document).on('click','div.day-other-image',function(){
                                                                                         //
-                                                                                        const    mainImage    =    $('img.'+$(this).attr('data-main-image'));
-                                                                                        const    imageUrl     =    $(this).attr('data-image');
+                                                                                        const    mainImage  =    $('img.'+$(this).attr('data-main-image'));
+                                                                                        const    imageUrl   =    $(this).attr('data-image');
 
                                                                                                 //
                                                                                                 //
                                                                                                 mainImage.attr('src',imageUrl);
+
+                                                                                                //
+                                                                                                $('div.day-other-image').each(function(){
+                                                                                                    $(this).removeClass("border-1").addClass('border-0');
+                                                                                                });
+
+                                                                                                $(this).addClass("border-1");
                                                                                     })
                                                                         }
                                                                         
