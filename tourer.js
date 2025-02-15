@@ -4,8 +4,9 @@ $(document).ready(
         const   replacements    =   {'="':"='",'=\\"':"='",'">':"'>",'\\">':"'>"};
                 //
                 //
-        var     dark_color      =   'dark';
-        var     light_color     =   'white';
+        var     link_mode       =   'button',
+                dark_color      =   'dark',
+                light_color     =   'white';
 
                 // decode html in a content
                 function decode_html(content){
@@ -78,8 +79,16 @@ $(document).ready(
                                                     link_name   =   link_keywords[1];
                                                 }
                                             }
-                                    const   linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 px-2 ml-2 ms-2 rounded-2 bg-"+dark_color+" text-"+light_color+" fw-normal lh-sm '>"+link_name+"</a>";
 
+                                    var     linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 px-2 ml-2 ms-2 rounded-2 bg-"+dark_color+" text-"+light_color+" fw-normal lh-sm '>"+link_name+"</a>";
+                                            switch(link_mode){
+                                                case "button":
+                                                                    linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 px-2 ml-2 ms-2 rounded-2 bg-"+dark_color+" text-"+light_color+" fw-normal lh-sm '>"+link_name+"</a>";
+                                                                    break;
+                                                case "underline":
+                                                                    linkButton      =   "<a href='"+link+"' class='btn d-inline-block fit-content p-1 ml-2 ms-2 rounded-2 bg-transparent text-"+light_color+" fw-bold lh-sm border-bottom border-bottom-1 border-bottom-dark'>"+link_name+"</a>";
+                                                                    break;
+                                            }
                                             content         =   content.replace(new RegExp(link,'gi'),linkButton);
                                 }
                             }
@@ -97,6 +106,7 @@ $(document).ready(
                     const   itinerary_booking_form_area     =   $("div.itinerary-booking-form-area");
                     const   json_data                       =   JSON.parse($("div.itinerary-tabs").attr('data-json'));
                             //
+                            link_mode                       =   itinerary_tab_content.attr('data-link-mode')?itinerary_tab_content.attr('data-link-mode'):'button';
                             dark_color                      =   itinerary_tab_content.attr('data-dark-color')?itinerary_tab_content.attr('data-dark-color'):'dark';
                             light_color                     =   itinerary_tab_content.attr('data-light-color')?itinerary_tab_content.attr('data-light-color'):'white';
 
@@ -162,7 +172,8 @@ $(document).ready(
                                                                                                                     //
                                                                                                                     if(file!=0){
                                                                                                                         //
-                                                                                                                        other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 border border-1 border-dark square-area" style="background:url(\''+domain+'/cms/'+day.files[file]+'\');" data-main-image="day-'+index+'-main-image"></div></div>';
+                                                                                                                        const   other_image     =   domain+'/cms/'+day.files[file];
+                                                                                                                                other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 border border-1 border-dark square-area" style="background:url(\''+other_image+'\');" data-image="'+other_image+'" data-main-image="day-'+index+'-main-image"></div></div>';
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
