@@ -116,13 +116,13 @@ $(document).ready(
                                     // reset buttons colors and backgrounds
                                     $("button.itinerary-tab").each(
                                         function(){
-                                            $(this).removeClass("bg-primary border-primary").addClass("bg-dark border-dark")
+                                            $(this).removeClass("bg-"+light_color+" border-"+light_color+" text-"+dark_color).addClass("bg-"+dark_color+" border-"+dark_color+" text-"+light_color);
                                         }
                                     )
 
 
                                     // change clicked button background and color
-                                    $(this).removeClass("bg-dark border-dark").addClass("bg-primary border-primary");
+                                    $(this).removeClass("bg-"+dark_color+" border-"+dark_color+" text-"+light_color).addClass("bg-"+light_color+" border-"+light_color+" text-"+dark_color);
 
                                     const   tab     =   $(this).attr("data-tab");
                                     var     content =   '';
@@ -179,8 +179,7 @@ $(document).ready(
                                                                                                             }
                                                                                                     
                                                                                                             content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
-                                                                                                                                    '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
+                                                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
                                                                                                                                     '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
                                                                                                                                         '<div class="row p-0 m-0">'+
                                                                                                                                             '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
@@ -194,8 +193,7 @@ $(document).ready(
                                                                                                 }
                                                                                                 else{
                                                                                                     content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' </div>'+
-                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark ps-4 fw-bold"> '+day.title+' </div>'+
+                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
                                                                                                                         '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
                                                                                                                     '</div>';
                                                                                                 }
