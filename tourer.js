@@ -1,3 +1,8 @@
+//
+// Tourer V1.0.12
+// Created By Bless Mgongolwa
+//
+
 $(document).ready(
     function(){
         const   html_entities   =   {"&quot;":'"',"&apos;":"'","&lt;":"<","&gt;":">","&amp;":"&"}  
@@ -24,42 +29,20 @@ $(document).ready(
                 // clean content remove slashes and if json escape double quotation
                 function clean_content(content){
 
-                    /*Object.keys(replacements).map(
-                        function(key){
-                            content    =   content.replace(new RegExp(key,'gi'),replacements[key]); 
-                        }
-                    );*/
-                    
-                            // on html attributes replace "-double quotes with ' single
-                    var     matches     =   content.match(/(([^\\{\\:\\,])([\\=])")|("([\\=\s>]{1,3})([^\\:\\,]))/gi);
-                            //
-                            if(matches!=null){
-                                //
-                                matches.map(
-                                    function(match){
-                                        content    =   content.replace(new RegExp(match,'gi'),match.replace(new RegExp('"','gi'),"'"))
-                                    }
-                                );
+                    const   unwantedDoubleQuotesRegex   =   new RegExp('(?<![\{\:\,])"(?![\:\,\}])','gi');
+                            if(unwantedDoubleQuotesRegex.test(content)){
+                                content     =   content.replace(unwantedDoubleQuotesRegex,"'");
                             }
 
-                            // add slashes on quoted text
-                            matches     =   content.match(/[^\[\\{\\:\\,]"[^\]\\}\\:,]/gi);
-                            //
-                            if(matches!=null){
-                                matches.map(
-                                    function(match){
-                                        content    =   content.replace(new RegExp(match,'gi'),match.replace(new RegExp('"','gi'),'\\"'))
-                                    }
-                                );
-                            }
-
-                    
-                    return link_replacer(content);//
+                            // replace links with buttons
+                            return link_replacer(content);//
                 }
 
                 // replace links with a buttons and text should be domain name
                 function link_replacer(content){
-                    const   matches     =   content.match(new RegExp('((https|http):\\/\\/)(www\\.)?(([a-z0-9\\_\\-]+){1,2})((\\.[a-z]+){1,2})((\\/[a-z0-9\\_\\%\\&\\;\\-]+){1,})?(\\/)?','gi'));
+
+                    //
+                    const   matches     =   content.match(new RegExp('(?<!(\'|"))((https|http):\\/\\/)(www\\.)?(([a-z0-9\\_\\-]+){1,2})((\\.[a-z]+){1,2})((\\/[a-z0-9\\_\\%\\&\\;\\-]+){1,})?(\\/)?','gi'));
                             if(matches){
                                 
                                 // filter unique links
@@ -93,6 +76,7 @@ $(document).ready(
                                 }
                             }
 
+                            //
                             return content; 
                 }
 
@@ -116,13 +100,13 @@ $(document).ready(
                                     // reset buttons colors and backgrounds
                                     $("button.itinerary-tab").each(
                                         function(){
-                                            $(this).removeClass("bg-"+light_color+" border-"+light_color+" text-"+dark_color).addClass("bg-"+dark_color+" border-"+dark_color+" text-"+light_color);
+                                            $(this).removeClass("bg-dark bg-"+light_color+" border-"+light_color+" text-"+dark_color).addClass("bg-"+dark_color+" border-"+dark_color+" text-"+light_color);
                                         }
                                     )
 
 
                                     // change clicked button background and color
-                                    $(this).removeClass("bg-"+dark_color+" border-"+dark_color+" text-"+light_color).addClass("bg-"+light_color+" border-"+light_color+" text-"+dark_color);
+                                    $(this).removeClass("bg-dark bg-"+dark_color+" border-"+dark_color+" text-"+light_color).addClass("bg-"+light_color+" border-"+light_color+" text-"+dark_color);
 
                                     const   tab     =   $(this).attr("data-tab");
                                     var     content =   '';
@@ -156,46 +140,53 @@ $(document).ready(
                                                                                     //
                                                                                     // check if you can parse json
                                                                                     try{                        days    =   JSON.parse(extra_content);  }
-                                                                                    catch(json_parse_error){    days    =   [];                         }
+                                                                                    catch(json_parse_error){  
+                                                                                        days    =   [];                         
+                                                                                    }
                                                                             
+                                                                                    //
+                                                                            var     day_number  =   0;
                                                                                     for(const index in days){
                                                                                         const   day     =   days[index];
-                                                                                        var     day_number      =   index*1; 
-                                                                                                day_number     +=    1;
                                                                                                 //
-                                                                                                if(Array.isArray(day.files)&&day.files.length>0){
-                                                                                                    const   first_image_url     =   domain+'/cms/'+day.files[0];
-                                                                                                    var     other_images        =   '';
-                                                                                                            if(day.files.length>1){
-                                                                                                                //
-                                                                                                                for(const file in day.files){
+                                                                                                // make sure day is proper json string
+                                                                                                if(day!=null&&typeof(day.title)=='string'){
+                                                                                                    day_number     +=    1;
+                                                                                                    //
+                                                                                                    if(Array.isArray(day.files)&&day.files.length>0){
+                                                                                                        const   first_image_url     =   domain+'/cms/'+day.files[0];
+                                                                                                        var     other_images        =   '';
+                                                                                                                if(day.files.length>1){
                                                                                                                     //
-                                                                                                                    if(file!=0){
+                                                                                                                    for(const file in day.files){
                                                                                                                         //
-                                                                                                                        const   other_image     =   domain+'/cms/'+day.files[file];
-                                                                                                                                other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 border border-1 border-dark square-area" style="background:url(\''+other_image+'\');" data-image="'+other_image+'" data-main-image="day-'+index+'-main-image"></div></div>';
+                                                                                                                        if(file!=0){
+                                                                                                                            //
+                                                                                                                            const   other_image     =   domain+'/cms/'+day.files[file];
+                                                                                                                                    other_images   +=   '<div class="col-3 p-2 m-0"><div class="col-12 p-0 m-0 day-other-image rounded-3 border border-1 border-dark square-area" style="background:url(\''+other_image+'\');" data-image="'+other_image+'" data-main-image="day-'+index+'-main-image"></div></div>';
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
-                                                                                                            }
-                                                                                                    
-                                                                                                            content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                                    '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
-                                                                                                                                    '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
-                                                                                                                                        '<div class="row p-0 m-0">'+
-                                                                                                                                            '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
-                                                                                                                                            '<div class="col-lg-5 col-md-5 col-12">'+
-                                                                                                                                                '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
-                                                                                                                                                '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                        
+                                                                                                                content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
+                                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
+                                                                                                                                            '<div class="row p-0 m-0">'+
+                                                                                                                                                '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
+                                                                                                                                                '<div class="col-lg-5 col-md-5 col-12">'+
+                                                                                                                                                    '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
+                                                                                                                                                    '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                                                                '</div>'+
                                                                                                                                             '</div>'+
                                                                                                                                         '</div>'+
-                                                                                                                                    '</div>'+
-                                                                                                                                '</div>';
-                                                                                                }
-                                                                                                else{
-                                                                                                    content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
-                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
-                                                                                                                    '</div>';
+                                                                                                                                    '</div>';
+                                                                                                    }
+                                                                                                    else{
+                                                                                                        content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                            '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
+                                                                                                                            '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+day.content+'</div>'+
+                                                                                                                        '</div>';
+                                                                                                    }
                                                                                                 }
                                                                                     }
                                                                                     content    +=   '</div>';
