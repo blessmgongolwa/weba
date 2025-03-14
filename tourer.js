@@ -283,16 +283,4 @@ $(window).on('load',function(){//
     catch(lazy_load_error){
         
     }
-
-    const   laterMedia          =   $(".later-media");
-            laterMedia.each(
-                function(){
-                    if($(this).prop("tagName").toLowerCase()=='img'){
-                        $(this).attr("src",$(this).attr("later-media"));
-                    }
-                    else{
-                        $(this).css("background-image","url("+$(this).attr("later-media")+")");
-                    }
-                }
-            );
 });
