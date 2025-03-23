@@ -29,7 +29,7 @@ $(document).ready(
                 // clean content remove slashes and if json escape double quotation
                 function clean_content(content){
 
-                    const   unwantedDoubleQuotesRegex   =   new RegExp('(?<![\{\:\,])"(?![\:\,\}])','gi');
+                    const   unwantedDoubleQuotesRegex   =   new RegExp('(?<![\\[\\{\\:\\,])"(?![\\:\\,\\}\\]])', 'gi')
                             if(unwantedDoubleQuotesRegex.test(content)){
                                 content     =   content.replace(unwantedDoubleQuotesRegex,"'");
                             }
@@ -141,6 +141,7 @@ $(document).ready(
                                                                                     // check if you can parse json
                                                                                     try{                        days    =   JSON.parse(extra_content);  }
                                                                                     catch(json_parse_error){  
+                                                                                        //console.log(json_parse_error)
                                                                                         days    =   [];                         
                                                                                     }
                                                                             
