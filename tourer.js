@@ -90,6 +90,7 @@ $(document).ready(
                     const   itinerary_booking_form_area     =   $("div.itinerary-booking-form-area");
                     const   json_data                       =   JSON.parse($("div.itinerary-tabs").attr('data-json'));
                             //
+                    const   data_daily_images_orientation   =   itinerary_tab_content.attr('data-daily-images-orientation')?itinerary_tab_content.attr('data-daily-images-orientation'):'right';
                             link_mode                       =   itinerary_tab_content.attr('data-link-mode')?itinerary_tab_content.attr('data-link-mode'):'button';
                             dark_color                      =   itinerary_tab_content.attr('data-dark-color')?itinerary_tab_content.attr('data-dark-color'):'dark';
                             light_color                     =   itinerary_tab_content.attr('data-light-color')?itinerary_tab_content.attr('data-light-color'):'white';
@@ -169,18 +170,34 @@ $(document).ready(
                                                                                                                     }
                                                                                                                 }
                                                                                                         
-                                                                                                                content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
-                                                                                                                                        '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
-                                                                                                                                        '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
-                                                                                                                                            '<div class="row p-0 m-0">'+
-                                                                                                                                                '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
-                                                                                                                                                '<div class="col-lg-5 col-md-5 col-12">'+
-                                                                                                                                                    '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
-                                                                                                                                                    '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                                if(data_daily_images_orientation=="left"){
+                                                                                                                    content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                                            '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
+                                                                                                                                            '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
+                                                                                                                                                '<div class="row p-0 m-0">'+
+                                                                                                                                                    '<div class="col-lg-5 col-md-5 col-12">'+
+                                                                                                                                                        '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
+                                                                                                                                                        '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                                                                    '</div>'+
+                                                                                                                                                    '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 ps-lg-2 ps-md-2 ps-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
                                                                                                                                                 '</div>'+
                                                                                                                                             '</div>'+
-                                                                                                                                        '</div>'+
-                                                                                                                                    '</div>';
+                                                                                                                                        '</div>';
+                                                                                                                }
+                                                                                                                else{
+                                                                                                                    content        +=   '<div class="col-12 p-0 m-0 mb-4">'+
+                                                                                                                                            '<div class="col-12 p-0 m-0 mb-3 fw-bold text-dark" style="margin-left:-10px !important;"> <i class="bi-check-circle-fill p-0 m-0 lh-1 align-middle pe-2 h5"></i> Day '+day_number+' : '+day.title+' </div>'+
+                                                                                                                                            '<div class="col-12 p-0 m-0 html-content text-dark text-justify ps-4">'+
+                                                                                                                                                '<div class="row p-0 m-0">'+
+                                                                                                                                                    '<div class="col-lg-7 col-md-7 col-12 p-0 m-0 pe-lg-2 pe-md-2 pe-0 mb-lg-0 mb-md-0 mb-3">'+day.content+'</div>'+
+                                                                                                                                                    '<div class="col-lg-5 col-md-5 col-12">'+
+                                                                                                                                                        '<img src="'+first_image_url+'" alt="'+day.title+'" class="day-'+index+'-main-image col-12 p-0 m-0"/>'+
+                                                                                                                                                        '<div class="row p-0 m-0">'+other_images+'</div>'+
+                                                                                                                                                    '</div>'+
+                                                                                                                                                '</div>'+
+                                                                                                                                            '</div>'+
+                                                                                                                                        '</div>';
+                                                                                                                }
                                                                                                     }
                                                                                                     else{
                                                                                                         content    +=   '<div class="col-12 p-0 m-0 mb-4">'+
