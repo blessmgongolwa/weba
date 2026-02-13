@@ -25,22 +25,25 @@ $(document).ready(function(){
                         }
             }
 
-            grecaptcha.ready(function() {
-                const   websiteFormGoogleRecaptchaInput     =   $("input#website-form-google-recaptcha-input");
-                        //
-                        //
-                        if(typeof(websiteFormGoogleRecaptchaInput.attr("data-site-key"))!="undefined"){
-                            const   websiteGoogleRecaptchaKey           =   websiteFormGoogleRecaptchaInput.attr("data-site-key").trim();
-                                    grecaptcha.execute(websiteGoogleRecaptchaKey, {action: 'submit'}).then(function(token) {
-                                        
-                                        // console.log(token);
-                                        // Add token to each input for form submition
-                                        websiteFormGoogleRecaptchaInput.each(function(){
-                                            $(this).val(token);
+            if(grecaptcha){
+                 grecaptcha.ready(function() {
+                    const   websiteFormGoogleRecaptchaInput     =   $("input#website-form-google-recaptcha-input");
+                            //
+                            //
+                            if(typeof(websiteFormGoogleRecaptchaInput.attr("data-site-key"))!="undefined"){
+                                const   websiteGoogleRecaptchaKey           =   websiteFormGoogleRecaptchaInput.attr("data-site-key").trim();
+                                        grecaptcha.execute(websiteGoogleRecaptchaKey, {action: 'submit'}).then(function(token) {
+                                            
+                                            // console.log(token);
+                                            // Add token to each input for form submition
+                                            websiteFormGoogleRecaptchaInput.each(function(){
+                                                $(this).val(token);
+                                            });
                                         });
-                                    });
-                        }
-            });
+                            }
+                });   
+            }
+            
 
             resizer();
             setInterval(resizer,100);
