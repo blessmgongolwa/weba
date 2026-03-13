@@ -25,7 +25,7 @@ jQuery(document).ready(function($){
                         }
             }
 
-            if(grecaptcha){
+            if(typeof(grecaptcha)!="undefined"){
                  grecaptcha.ready(function() {
                     const   websiteFormGoogleRecaptchaInput     =   $("input#website-form-google-recaptcha-input");
                             //
